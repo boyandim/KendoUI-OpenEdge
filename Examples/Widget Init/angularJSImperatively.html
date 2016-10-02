@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Untitled</title>
+
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.2.714/styles/kendo.common.min.css">
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.2.714/styles/kendo.rtl.min.css">
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.2.714/styles/kendo.default.min.css">
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.2.714/styles/kendo.mobile.all.min.css">
+
+  <script src="http://code.jquery.com/jquery-1.12.3.min.js"></script>
+  <script src="http://kendo.cdn.telerik.com/2016.2.714/js/angular.min.js"></script>
+  <script src="http://kendo.cdn.telerik.com/2016.2.714/js/jszip.min.js"></script>
+  <script src="http://kendo.cdn.telerik.com/2016.2.714/js/kendo.all.min.js"></script></head>
+<body>
+    <div ng-app="app" ng-controller="ctrl">
+        <input kendo-slider="slider" k-min="0" k-max="50" k-small-step="5" k-large-step="10" k-on-change="onChange()" k-value="10" ng-model="result">
+    
+        <h5>results:{{result || 10}}</h5>
+    </div>
+  
+    <script>
+        angular.module("app", ["kendo.directives"]).controller("ctrl", function($scope){
+          $scope.onChange = function() {
+             alert($scope.slider.value());
+          };
+        });
+    </script>
+</body>
+</html>

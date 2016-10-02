@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Untitled</title>
+
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.3.914/styles/kendo.common.min.css">
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.3.914/styles/kendo.rtl.min.css">
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.3.914/styles/kendo.default.min.css">
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.3.914/styles/kendo.mobile.all.min.css">
+
+  <script src="http://code.jquery.com/jquery-1.12.3.min.js"></script>
+  <script src="http://kendo.cdn.telerik.com/2016.3.914/js/angular.min.js"></script>
+  <script src="http://kendo.cdn.telerik.com/2016.3.914/js/jszip.min.js"></script>
+  <script src="http://kendo.cdn.telerik.com/2016.3.914/js/kendo.all.min.js"></script></head>
+<body>
+  <script>
+    //create data source, passing it data
+    var localDataSource = new kendo.data.DataSource({ 
+      data: [
+        {
+          "id": 1,
+          "name": "Leanne Graham",
+        },
+        {
+          "id": 2,
+          "name": "Ervin Howell",
+        }
+      ]
+    });
+    
+    //fetch/read data into instance, then do something
+    localDataSource.fetch(function(){
+      //this = DataSource instance, call DataSource methods on it
+      console.log(this.data().length);
+      console.log(this.get(1).name);
+      console.log(this.get(2).name);
+    });
+
+  </script>
+</body>
+</html>

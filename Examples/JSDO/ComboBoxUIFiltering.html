@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Kendo UI Snippet</title>
+
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2015.1.429/styles/kendo.common.min.css">
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2015.1.429/styles/kendo.rtl.min.css">
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2015.1.429/styles/kendo.default.min.css">
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2015.1.429/styles/kendo.dataviz.min.css">
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2015.1.429/styles/kendo.dataviz.default.min.css">
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2015.1.429/styles/kendo.mobile.all.min.css">
+
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://cdn.kendostatic.com/2015.1.429/js/kendo.all.min.js"></script>
+    <script src="http://oemobiledemo.progress.com/jsdo/progress.all.min.js"></script>
+  </head>
+  <body>
+
+    <input id="combobox" />
+    <script>
+      function createComboBox() {  
+        var dataSource = new kendo.data.DataSource({
+          type: "jsdo",
+          transport: {
+            jsdo: "State"
+          }
+        });
+        $("#combobox").kendoComboBox({
+          dataSource: dataSource,
+          dataTextField: "StateName",
+          dataValueField: "State"
+        });
+      }
+
+      try {
+        var serviceURI = "http://oemobiledemo.progress.com/GenericService",
+            jsdoSettings = {
+              serviceURI: serviceURI,
+              catalogURIs: serviceURI + "/rest/GenericService/catalog/State"
+            },
+            jsdosession,
+            promise;
+
+        // create a new session object
+        jsdosession = new progress.data.JSDOSession(jsdoSettings);
+        promise = jsdosession.login("", "");
+
+        promise.done(function(jsdosession, result, info){
+          jsdosession.addCatalog(jsdoSettings.catalogURIs)
+            .done(function(jsdosession, result, details){
+            createComboBox();
+          })
+            .fail(function(jsdosession, result, details){
+            alert("Error while executing addCatalog().");
+          });
+        });
+        promise.fail(function(jsdosession, result, info){
+          alert("Error while executing login().");      
+        });        
+      }
+      catch (e) {
+        alert("Error instantiating objects: " + e);
+      }  
+
+    </script>
+  </body>
+</html>

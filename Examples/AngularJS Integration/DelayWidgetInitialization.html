@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Kendo UI Snippet</title>
+
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.3.914/styles/kendo.common.min.css"/>
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.3.914/styles/kendo.rtl.min.css"/>
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.3.914/styles/kendo.silver.min.css"/>
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.3.914/styles/kendo.mobile.all.min.css"/>
+
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://kendo.cdn.telerik.com/2016.3.914/js/angular.min.js"></script>
+    <script src="http://kendo.cdn.telerik.com/2016.3.914/js/kendo.all.min.js"></script>
+  </head>
+  <body>
+    <div ng-app="app" ng-controller="MyCtrl">
+      <select kendo-drop-down-list k-options="customOptions" k-ng-delay="customOptions.dataSource"></select>
+    </div>
+    <script>
+      angular.module("app", [ "kendo.directives" ]).controller("MyCtrl", function($scope) {
+        $.ajax({
+          url: 'http://demos.telerik.com/kendo-ui/service/Products',
+          dataType: "jsonp",
+          jsonpCallback: 'callback',
+          success: function(data) {
+              $scope.$apply(function(){
+                $scope.customOptions.dataSource = new kendo.data.DataSource({
+                  data: data
+                });
+              });
+          }
+        })
+        $scope.customOptions = {
+          dataTextField: "ProductName",
+          dataValueField: "ProductID"
+        };
+      });
+    </script>
+  </body>
+</html>

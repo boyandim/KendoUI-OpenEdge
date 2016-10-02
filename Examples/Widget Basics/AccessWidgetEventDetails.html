@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Untitled</title>
+
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.2.714/styles/kendo.common.min.css">
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.2.714/styles/kendo.rtl.min.css">
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.2.714/styles/kendo.default.min.css">
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.2.714/styles/kendo.mobile.all.min.css">
+
+  <script src="http://code.jquery.com/jquery-1.12.3.min.js"></script>
+  <script src="http://kendo.cdn.telerik.com/2016.2.714/js/angular.min.js"></script>
+  <script src="http://kendo.cdn.telerik.com/2016.2.714/js/jszip.min.js"></script>
+  <script src="http://kendo.cdn.telerik.com/2016.2.714/js/kendo.all.min.js"></script></head>
+<body>
+    <button>A Button</button>
+  
+    <script>
+    //configure kendo button with a click event callback function
+    $('button').kendoButton({
+      click:function(event){
+        //write to the DOM this function, using event.sender
+        $('<pre>')
+          .text(event.sender.options.click.toString())
+          .insertAfter('button');
+      }
+    });
+    </script>
+</body>
+</html>

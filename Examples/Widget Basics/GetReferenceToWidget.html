@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Untitled</title>
+
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.2.714/styles/kendo.common.min.css">
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.2.714/styles/kendo.rtl.min.css">
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.2.714/styles/kendo.default.min.css">
+  <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2016.2.714/styles/kendo.mobile.all.min.css">
+
+  <script src="http://code.jquery.com/jquery-1.12.3.min.js"></script>
+  <script src="http://kendo.cdn.telerik.com/2016.2.714/js/angular.min.js"></script>
+  <script src="http://kendo.cdn.telerik.com/2016.2.714/js/jszip.min.js"></script>
+  <script src="http://kendo.cdn.telerik.com/2016.2.714/js/kendo.all.min.js"></script></head>
+<body>
+  
+    <div id="calendar"></div>
+  
+    <div id="instatiateAnythingInThisDiv">
+      <input id="autoComplete" data-role="autocomplete" data-source="['Ant', 'Antilope', 'Badger', 'Beaver', 'Bird']" placeholder="start typing e.g. 'a'" />
+    </div>
+  
+    <script>
+        //create calendar and auto complete widgets
+        kendo.bind($('#instatiateAnythingInThisDiv')); //from markup
+        var $cal = $('#calendar').kendoCalendar(); //using jQuery method
+      
+        //get instance/reference to calendar widget 
+        //using jQuery method .getKendoNameOfWidget() or .data('kendoNameOfWidget')
+        var calInstance = $cal.getKendoCalendar(); 
+        console.log(calInstance.view().name);
+      
+        //get instance/reference to auto complete widget
+        var autoCompleteInstance = kendo.widgetInstance($('#autoComplete'));
+        autoCompleteInstance.search("B")
+    </script>
+</body>
+</html>
